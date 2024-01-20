@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "207313856469",
+    "project_id": "dharanproject",
+    "storage_bucket": "dharanproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:207313856469:android:6d459a3cfdacbb6ce03f5c",
+        "android_client_info": {
+          "package_name": "com.example.project_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgdryPH6sukkw9UeEl-myQg_JD_fPn4n0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
