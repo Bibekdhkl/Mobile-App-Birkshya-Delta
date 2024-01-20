@@ -53,10 +53,11 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCgdryPH6sukkw9UeEl-myQg_JD_fPn4n0',
-    appId: '1:207313856469:android:6d459a3cfdacbb6ce03f5c',
-    messagingSenderId: '207313856469',
-    projectId: 'dharanproject',
-    storageBucket: 'dharanproject.appspot.com',
+    apiKey: 'AIzaSyAveNCT_N2RaeM8TAWHv9R6YI_rGAl5WRk',
+    appId: '1:199848178555:android:f49e5ee4d6362cb2ad03de',
+    messagingSenderId: '199848178555',
+    projectId: 'esp8266-data-transfer',
+    databaseURL: 'https://esp8266-data-transfer-default-rtdb.firebaseio.com',
+    storageBucket: 'esp8266-data-transfer.appspot.com',
   );
 }

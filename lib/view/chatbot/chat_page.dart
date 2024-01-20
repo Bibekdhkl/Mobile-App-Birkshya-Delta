@@ -8,12 +8,12 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   final TextEditingController _controller = TextEditingController();
-  List<Map<String, String>> _qaPairs = [
+  List<Map<String, dynamic>> _qaPairs = [
     {"question": "What is your name?", "answer": "My name is Arjun"},
     {"question": "What is your age?", "answer": "32"},
   ];
 
-  List<Map<String, String>> _messages = [];
+  List<Map<String, dynamic>> _messages = [];
 
   bool _isTyping = false;
 
@@ -24,7 +24,7 @@ class _ChatPageState extends State<ChatPage> {
         backgroundColor: Colors.blueAccent,
         iconTheme: IconThemeData(color: Colors.white),
         title: Text(
-          'Chat with AI',
+          'Chat with BrikshyaAI',
           style: TextStyle(
             color: Colors.white,
           ),
@@ -39,11 +39,36 @@ class _ChatPageState extends State<ChatPage> {
               itemBuilder: (context, index) {
                 final message = _messages[index];
                 return ListTile(
-                  title: Text(message['text']!),
+                  title: Align(
+                    alignment: message['isAI']
+                        ? Alignment.centerLeft
+                        : Alignment.centerRight,
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: message['isAI'] ? Colors.blue : Colors.green,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text(
+                        message['text'],
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
                 );
               },
             ),
           ),
+          _isTyping
+              ? Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                        "BrikshyaAI is typing...",
+                      )),
+                )
+              : Container(),
           Divider(
             height: 1,
             color: Colors.grey,
@@ -115,7 +140,7 @@ class _ChatPageState extends State<ChatPage> {
     for (var qaPair in _qaPairs) {
       if (qaPair['question'] == question) {
         // AI's response
-        _addMessage(qaPair['answer']!, true);
+        _addMessage(qaPair['answer'], true);
         return;
       }
     }
@@ -127,14 +152,8 @@ class _ChatPageState extends State<ChatPage> {
     setState(() {
       _messages.insert(
         0,
-        {"text": text, "isAI": isAI.toString()},
+        {"text": text, "isAI": isAI},
       );
     });
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: ChatPage(),
-  ));
 }

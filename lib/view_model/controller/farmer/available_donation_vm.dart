@@ -11,6 +11,7 @@ class AllAvailableDonationController extends GetxController {
   final RxList<AllAvailableDonationList> availableDonationList =
       <AllAvailableDonationList>[].obs;
 
+  int get availableDonationCount => availableDonationList.length;
   void setRxRequestStatus(Status _value) {
     print('Setting status: $_value');
     rxRequestStatus.value = _value;

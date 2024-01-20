@@ -32,7 +32,7 @@ class NavController extends GetxController {
     } else if (userRole.value == 1) {
       switch (index) {
         case 0:
-          currentScreen.value = TeacherHome(); // Screen for role 1, item 0
+          currentScreen.value = FarmerHome(); // Screen for role 1, item 0
           break;
         case 1:
           currentScreen.value = ApprovedList(); // Screen for role 1, item 1
@@ -55,7 +55,7 @@ class NavController extends GetxController {
     if (role == 0) {
       currentScreen.value = DonorHome();
     } else if (role == 1) {
-      currentScreen.value = TeacherHome();
+      currentScreen.value = FarmerHome();
     }
   }
 

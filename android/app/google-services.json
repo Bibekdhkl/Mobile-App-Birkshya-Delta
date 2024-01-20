@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "207313856469",
-    "project_id": "dharanproject",
-    "storage_bucket": "dharanproject.appspot.com"
+    "project_number": "199848178555",
+    "firebase_url": "https://esp8266-data-transfer-default-rtdb.firebaseio.com",
+    "project_id": "esp8266-data-transfer",
+    "storage_bucket": "esp8266-data-transfer.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:207313856469:android:6d459a3cfdacbb6ce03f5c",
+        "mobilesdk_app_id": "1:199848178555:android:f49e5ee4d6362cb2ad03de",
         "android_client_info": {
           "package_name": "com.example.project_app"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCgdryPH6sukkw9UeEl-myQg_JD_fPn4n0"
+          "current_key": "AIzaSyAveNCT_N2RaeM8TAWHv9R6YI_rGAl5WRk"
         }
       ],
       "services": {

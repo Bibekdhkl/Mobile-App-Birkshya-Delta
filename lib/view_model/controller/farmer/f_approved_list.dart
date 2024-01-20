@@ -11,6 +11,13 @@ class AllApprovedDonationController extends GetxController {
   final RxList<AllAcceptedDonationList> approvedDonationList =
       <AllAcceptedDonationList>[].obs;
 
+  int get approvedDonationCount => approvedDonationList.length;
+
+  double get totalDonationAmount {
+    return approvedDonationList.fold(
+        0, (sum, item) => sum + item.donationAmount!);
+  }
+
   void setRxRequestStatus(Status _value) {
     print('Setting status: $_value');
     rxRequestStatus.value = _value;

@@ -25,7 +25,7 @@ class InputPassword2Widget extends StatelessWidget {
             registerVM.password2FocusNode.value);
       },
       decoration: InputDecoration(
-          hintText: "Confirm Password", border: OutlineInputBorder()),
+          hintText: "confirm_password".tr, border: OutlineInputBorder()),
     );
   }
 }

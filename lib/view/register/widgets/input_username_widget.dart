@@ -23,7 +23,7 @@ class InputUsernameWidget extends StatelessWidget {
             registerVM.usernameFocusNode.value);
       },
       decoration: InputDecoration(
-          hintText: "Enter username", border: OutlineInputBorder()),
+          hintText: "username".tr, border: OutlineInputBorder()),
     );
   }
 }

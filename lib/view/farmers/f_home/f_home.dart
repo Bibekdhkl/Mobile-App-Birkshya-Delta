@@ -3,20 +3,23 @@ import 'package:project_app/data/response/status.dart';
 import 'package:project_app/resources/routes/routes_name.dart';
 import 'package:project_app/view/farmers/f_home/widget/f_list.dart';
 import 'package:project_app/view_model/controller/farmer/available_donation_vm.dart';
+import 'package:project_app/view_model/controller/farmer/f_approved_list.dart';
 import 'package:project_app/view_model/controller/user_preferences/user_preferences_view_model.dart';
 import 'package:get/get.dart';
 
-class TeacherHome extends StatefulWidget {
-  const TeacherHome({super.key});
+class FarmerHome extends StatefulWidget {
+  const FarmerHome({super.key});
 
   @override
-  State<TeacherHome> createState() => _TeacherHomeState();
+  State<FarmerHome> createState() => _FarmerHomeState();
 }
 
-class _TeacherHomeState extends State<TeacherHome> {
+class _FarmerHomeState extends State<FarmerHome> {
   UserPreference userPreference = UserPreference();
   final AllAvailableDonationController controller =
       Get.put(AllAvailableDonationController());
+  final AllApprovedDonationController controller1 =
+      Get.put(AllApprovedDonationController());
 
   @override
   void initState() {
@@ -31,7 +34,9 @@ class _TeacherHomeState extends State<TeacherHome> {
         child: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            title: Text("farmer_home".tr),
+            title: Text("plant_a_tree".tr,
+                style: TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.bold)),
             actions: [
               IconButton(
                   onPressed: () {
@@ -71,31 +76,76 @@ class _TeacherHomeState extends State<TeacherHome> {
                             height: 100,
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
-                                colors: [
-                                  Colors.black,
-                                  const Color.fromARGB(255, 229, 160, 160)
-                                ],
+                                colors: [Colors.blueGrey, Colors.green],
                               ),
+                              borderRadius: BorderRadius.circular(
+                                  10), // This makes the box rounded
+                              boxShadow: [
+                                // This adds a shadow
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: Offset(
+                                      0, 3), // changes position of shadow
+                                ),
+                              ],
                             ),
-                            child: Text("total_donation".tr,
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("available_offer".tr,
+                                    style: TextStyle(
+                                        color: Color.fromRGBO(255, 255, 255, 1),
+                                        fontSize: 20)),
+                                FutureBuilder(
+                                  future: controller.availableDonationListApi(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.waiting) {
+                                      return CircularProgressIndicator(); // Show a loading spinner while waiting for the data
+                                    } else if (snapshot.hasError) {
+                                      return Text(
+                                          'Error: ${snapshot.error}'); // Show an error message if something went wrong
+                                    } else {
+                                      return Text(
+                                        "${controller.availableDonationCount}",
+                                        style: TextStyle(
+                                          color: Color.fromARGB(
+                                              255, 255, 255, 255),
+                                          fontSize: 20,
+                                        ),
+                                      ); // Show the count when the data is loaded
+                                    }
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
+                          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                           child: Container(
                             alignment: Alignment.center,
                             height: 100,
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
-                                colors: [
-                                  Colors.black,
-                                  const Color.fromARGB(255, 250, 126, 126)
-                                ],
+                                colors: [Colors.blueGrey, Colors.green],
                               ),
+                              borderRadius: BorderRadius.circular(
+                                  10), // This makes the box rounded
+                              boxShadow: [
+                                // This adds a shadow
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: Offset(
+                                      0, 3), // changes position of shadow
+                                ),
+                              ],
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -103,9 +153,26 @@ class _TeacherHomeState extends State<TeacherHome> {
                                 Text("total_count".tr,
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 20)),
-                                Text("50",
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 20)),
+                                FutureBuilder(
+                                  future: controller1.approvedDonationListApi(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.waiting) {
+                                      return CircularProgressIndicator(); // Show a loading spinner while waiting for the data
+                                    } else if (snapshot.hasError) {
+                                      return Text(
+                                          'Error: ${snapshot.error}'); // Show an error message if something went wrong
+                                    } else {
+                                      return Text(
+                                        "${controller1.approvedDonationCount}",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                        ),
+                                      ); // Show the count when the data is loaded
+                                    }
+                                  },
+                                )
                               ],
                             ),
                           ),
@@ -114,40 +181,70 @@ class _TeacherHomeState extends State<TeacherHome> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: Container(
-                            alignment: Alignment.center,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Colors.black,
-                                  Color.fromARGB(255, 249, 88, 88)
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Container(
+                              alignment: Alignment.center,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [Colors.blueGrey, Colors.green],
+                                ),
+                                borderRadius: BorderRadius.circular(
+                                    10), // This makes the box rounded
+                                boxShadow: [
+                                  // This adds a shadow
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 5,
+                                    blurRadius: 7,
+                                    offset: Offset(
+                                        0, 3), // changes position of shadow
+                                  ),
+                                ],
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text("wallet_balance".tr,
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 20)),
+                                  FutureBuilder(
+                                    future:
+                                        controller1.approvedDonationListApi(),
+                                    builder: (context, snapshot) {
+                                      if (snapshot.connectionState ==
+                                          ConnectionState.waiting) {
+                                        return CircularProgressIndicator(); // Show a loading spinner while waiting for the data
+                                      } else if (snapshot.hasError) {
+                                        return Text(
+                                            'Error: ${snapshot.error}'); // Show an error message if something went wrong
+                                      } else {
+                                        return Text(
+                                          "Rs. " +
+                                              "${controller1.totalDonationAmount}",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                          ),
+                                        ); // Show the total donation amount when the data is loaded
+                                      }
+                                    },
+                                  )
                                 ],
                               ),
                             ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("wallet_balance".tr,
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 20)),
-                                Text("Rs. 15",
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 20)),
-                              ],
-                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -158,7 +255,7 @@ class _TeacherHomeState extends State<TeacherHome> {
                     Container(
                       padding: EdgeInsets.only(left: 10),
                       alignment: Alignment.centerLeft,
-                      child: Text("View All Offers",
+                      child: Text("view_all_offers".tr,
                           style: TextStyle(color: Colors.black, fontSize: 23)),
                     ),
                     Expanded(
@@ -166,13 +263,19 @@ class _TeacherHomeState extends State<TeacherHome> {
                         padding: EdgeInsets.only(right: 10),
                         alignment: Alignment.centerRight,
                         child: ElevatedButton(
-                            onPressed: () {}, child: Text("View All")),
+                            onPressed: () {
+                              Get.toNamed(RouteName.farmerAllDonation);
+                            },
+                            child: Text("View All")),
                       ),
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: 20,
+                ),
                 Padding(
-                  padding: const EdgeInsets.all(1.0),
+                  padding: const EdgeInsets.all(3.0),
                   child: Obx(() {
                     if (controller.rxRequestStatus.value == Status.LOADING) {
                       return CircularProgressIndicator();
@@ -181,7 +284,8 @@ class _TeacherHomeState extends State<TeacherHome> {
                       return Text('Error: ${controller.error.value}');
                     } else {
                       return controller.availableDonationList.isEmpty
-                          ? Center(child: Text('No offers available right now'))
+                          ? Center(
+                              child: Text('no_offer_available_right_now'.tr))
                           : Column(
                               children: controller.availableDonationList
                                   .map((donation) {

@@ -15,6 +15,17 @@ class DonorDonationListController extends GetxController {
     rxRequestStatus.value = _value;
   }
 
+  double get totalAmount {
+    double sum = 0;
+    for (var donation in donationList) {
+      sum += donation.donationAmount ??
+          0; // replace 'amount' with the actual field name in your DonorDonationList model
+    }
+    return sum;
+  }
+
+  int get donationCount => donationList.length;
+
   void setDonationList(List<DonorDonationList> _value) {
     print('Setting donation list: $_value');
     donationList.value = _value;

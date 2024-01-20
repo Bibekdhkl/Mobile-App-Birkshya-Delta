@@ -9,11 +9,19 @@ import 'package:project_app/view/donors/d_detail/d_detail.dart';
 class d_list extends StatelessWidget {
   final String title;
   final String description;
+  final String amount;
+  final String image;
+  final String comment;
+  final String status;
 
   d_list({
     Key? key,
     required this.title,
     required this.description,
+    required this.amount,
+    required this.image,
+    required this.comment,
+    required this.status,
   }) : super(key: key);
 
   @override
@@ -44,6 +52,14 @@ class d_list extends StatelessWidget {
                 fontSize: 16,
               ),
             ),
+            Text(
+              'Amount : Rs. $amount',
+              style: TextStyle(
+                color: const Color.fromARGB(255, 0, 0, 0),
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             ButtonBar(
               alignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -65,9 +81,12 @@ class d_list extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => SummaryDetail(
-                date: '2022-01-01', // replace with actual date
-                title: 'Title', // replace with actual title
-                summary: 'Summary', // replace with actual summary
+                title: title,
+                description: description,
+                amount: amount,
+                image: image,
+                comment: comment,
+                status: status,
               ),
             ),
           );

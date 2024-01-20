@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_app/models/auth/auth_model.dart';
 import 'package:project_app/view_model/controller/user_preferences/user_preferences_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get/get.dart';
 
 class StudentProfile extends StatefulWidget {
   const StudentProfile({Key? key}) : super(key: key);
@@ -53,7 +54,7 @@ class _StudentProfileState extends State<StudentProfile> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Edit Profile'),
+          title: Text('edit_profile'.tr),
           content: SingleChildScrollView(
             child: ConstrainedBox(
               constraints: BoxConstraints(
@@ -116,7 +117,8 @@ class _StudentProfileState extends State<StudentProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Donor Profile"),
+        automaticallyImplyLeading: false,
+        title: Text("donor_profile".tr),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.edit),
@@ -141,10 +143,10 @@ class _StudentProfileState extends State<StudentProfile> {
               ),
             ),
             SizedBox(height: 16),
-            _buildDetailItem('Name', name),
-            _buildDetailItem('Email', email),
-            _buildDetailItem('Phone', '0123456789'),
-            _buildDetailItem('Role', role),
+            _buildDetailItem('name'.tr, name),
+            _buildDetailItem('email'.tr, email),
+            _buildDetailItem('phone'.tr, '981380488'),
+            _buildDetailItem('role'.tr, role),
             Center(
               child: ElevatedButton(
                 style: ButtonStyle(
@@ -162,7 +164,7 @@ class _StudentProfileState extends State<StudentProfile> {
                   _showEditDialog(context);
                 },
                 child: Text(
-                  "Edit Profile",
+                  "edit_profile".tr,
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
               ),

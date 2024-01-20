@@ -19,8 +19,13 @@ class AppRoutes {
             transitionDuration: Duration(milliseconds: 250),
             transition: Transition.leftToRightWithFade),
         GetPage(
+            name: RouteName.farmerAllDonation,
+            page: () => ApprovedList(),
+            transitionDuration: Duration(milliseconds: 250),
+            transition: Transition.leftToRightWithFade),
+        GetPage(
             name: RouteName.farmerHome,
-            page: () => IntroScreen(),
+            page: () => FarmerHome(),
             transitionDuration: Duration(milliseconds: 250),
             transition: Transition.leftToRightWithFade),
         GetPage(

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project_app/models/auth/auth_model.dart';
+import 'package:project_app/view/farmers/f_profile/live_firebase.dart';
 import 'package:project_app/view_model/controller/user_preferences/user_preferences_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get/get.dart';
 
 class FarmerProfile extends StatefulWidget {
   const FarmerProfile({Key? key}) : super(key: key);
@@ -28,6 +30,7 @@ class _StudentProfileState extends State<FarmerProfile> {
     final name = await userPreference.getName();
     final email = await userPreference.getEmail();
     final role = await userPreference.getRole();
+
     setState(() {
       this.name = name ?? '';
       this.email = email ?? '';
@@ -53,7 +56,7 @@ class _StudentProfileState extends State<FarmerProfile> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Edit Profile'),
+          title: Text('edit_profile'.tr),
           content: SingleChildScrollView(
             child: ConstrainedBox(
               constraints: BoxConstraints(
@@ -116,7 +119,8 @@ class _StudentProfileState extends State<FarmerProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Farmer Profile"),
+        automaticallyImplyLeading: false,
+        title: Text("farmer_profile".tr),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.edit),
@@ -142,34 +146,39 @@ class _StudentProfileState extends State<FarmerProfile> {
               ),
             ),
             SizedBox(height: 15),
-            _buildDetailItem('Name', name),
-            _buildDetailItem('Email', email),
-            _buildDetailItem('Phone', '0123456789'),
-            _buildDetailItem('Role', role),
-            _buildDetailItem('Location', "Kathmandu"),
+            _buildDetailItem('name'.tr, name),
+            _buildDetailItem('email'.tr, email),
+            _buildDetailItem('phone'.tr, '9832139231'),
+            _buildDetailItem('role'.tr, role),
+            _buildDetailItem('location'.tr, "Kathmandu"),
             SizedBox(height: 20),
-            Center(
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.black),
-                  padding: MaterialStateProperty.all<EdgeInsets>(
-                      EdgeInsets.symmetric(horizontal: 25, vertical: 10)),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                  ),
-                ),
-                onPressed: () {
-                  _showEditDialog(context);
-                },
-                child: Text(
-                  "Edit Profile",
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-              ),
-            )
+            Text("live_sensor_data".tr,
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+            // Center(
+            //   child: ElevatedButton(
+            //     style: ButtonStyle(
+            //       backgroundColor:
+            //           MaterialStateProperty.all<Color>(Colors.black),
+            //       padding: MaterialStateProperty.all<EdgeInsets>(
+            //           EdgeInsets.symmetric(horizontal: 25, vertical: 10)),
+            //       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            //         RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.circular(30.0),
+            //         ),
+            //       ),
+            //     ),
+            //     onPressed: () {
+            //       _showEditDialog(context);
+            //     },
+            //     child: Text(
+            //       "Edit Profile",
+            //       style: TextStyle(color: Colors.white, fontSize: 20),
+            //     ),
+            //   ),
+            // ),
+            SizedBox(height: 20),
+            LiveFirebaseData(),
+            SizedBox(height: 20),
           ],
         ),
       ),

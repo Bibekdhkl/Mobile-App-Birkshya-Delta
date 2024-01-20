@@ -40,4 +40,11 @@ class FarmerRepository {
         await _apiServices.postReq(data, AppUrl.acceptOfferApi());
     return response;
   }
+
+  Future<dynamic> updateStatusApi(var data, int id) async {
+    dynamic response = await _apiServices.postReq(
+        data, AppUrl.updateTreeDonationStatusApi(id));
+    print("the response is " + response.toString());
+    return response;
+  }
 }

@@ -1,30 +1,38 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class Test extends StatefulWidget {
-  const Test({super.key});
+  const Test({Key? key}) : super(key: key);
 
   @override
   State<Test> createState() => _TestState();
 }
 
 class _TestState extends State<Test> {
-  FirebaseDatabase database = FirebaseDatabase.instance;
+  late DatabaseReference ref;
 
   @override
   void initState() {
     super.initState();
-    _storeData();
+    ref = FirebaseDatabase.instance.ref("test");
+    fetchData();
   }
 
-  Future<void> _storeData() async {
-    DatabaseReference ref = database.ref().child('message');
-    await ref.set('Hello Arjun');
+  Future<void> fetchData() async {
+    try {
+      final snapshot = await ref.get();
+      if (snapshot.exists) {
+        print(snapshot.value);
+      } else {
+        print('No data available.');
+      }
+    } catch (e) {
+      print('Failed to fetch data: $e');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Placeholder();
   }
 }

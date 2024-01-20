@@ -11,6 +11,7 @@ import 'package:project_app/resources/routes/routes.dart';
 import 'package:project_app/test.dart';
 import 'package:project_app/view/login/login_view.dart';
 import 'package:project_app/view/register/register_view.dart';
+import 'package:project_app/view/splash_screen/intro.dart';
 import 'package:project_app/view/splash_screen/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Kakshya',
+      title: 'Project',
       translations: Langauges(),
       locale: Locale('en', 'US'),
       theme: ThemeData(

@@ -27,7 +27,7 @@ class _LoginScreenState extends State<IntroScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
                   child: const Text(
-                    "Lets plan, 1 more tree!",
+                    "Lets plant, 1 more tree",
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
@@ -37,7 +37,7 @@ class _LoginScreenState extends State<IntroScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 38),
-                child: Image.asset("assets/images/onboarding.jpg",
+                child: Image.asset("assets/images/onboarding.webp",
                     height: 420, width: 420),
               ),
               CustomButton(

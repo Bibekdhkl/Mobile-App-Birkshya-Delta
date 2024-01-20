@@ -7,6 +7,6 @@ class RouteName {
   static const String registerScreen = '/register';
   static const String donorHome = '/donorHome';
   static const String farmerHome = '/farmerHome';
-
+  static const String farmerAllDonation = '/farmerAllDonation';
   static const String loginScreen = '/login';
 }

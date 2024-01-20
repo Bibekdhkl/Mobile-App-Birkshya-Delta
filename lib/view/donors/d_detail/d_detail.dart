@@ -1,28 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:project_app/resources/url/app_url.dart';
 import 'dart:math';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:project_app/view/chatbot/chat_page.dart';
 
 class SummaryDetail extends StatelessWidget {
-  final String date;
   final String title;
-  final String summary;
+  final String description;
+  final String amount;
+  final String image;
+  final String comment;
+  final String status;
 
-  SummaryDetail(
-      {required this.date, required this.title, required this.summary});
+  SummaryDetail({
+    required this.title,
+    required this.description,
+    required this.amount,
+    required this.image,
+    required this.comment,
+    required this.status,
+  });
 
   @override
   Widget build(BuildContext context) {
     // Split the summary into paragraphs
-    List<String> sentences = summary.split('. ');
-
-// Generate a random index
-    int randomIndex = Random().nextInt(sentences.length);
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('Summary Detail'),
+        title: Text('Details'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.chat),
@@ -51,31 +57,50 @@ class SummaryDetail extends StatelessWidget {
               ),
             ),
             SizedBox(height: 8),
-            Text(
-              'Created at: ${DateFormat('dd MMMM, yyyy').format(DateTime.parse(date))}',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-            ),
             SizedBox(height: 16),
-            Column(
-              children: [
-                Text(
-                  summary,
-                  style: TextStyle(fontSize: 16),
+            Text(
+              'Your Donation : Rs. $amount',
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 16.0),
+            Text(
+              'Description: $description',
+              style: TextStyle(fontSize: 16),
+            ),
+            SizedBox(height: 16.0),
+            Image.network(
+              '${AppUrl.baseUrl}$image',
+              fit: BoxFit.cover,
+              errorBuilder: (BuildContext context, Object exception,
+                  StackTrace? stackTrace) {
+                return const Text('Status : Image is not assigned yet.',
+                    style:
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold));
+              },
+            ),
+            SizedBox(height: 30),
+            Text(
+              'Comment: ${comment?.isEmpty ?? true ? 'No comment provided' : comment}',
+              style: TextStyle(fontSize: 16),
+            ),
+            Text(
+              'Status: ${status?.isEmpty ?? true ? 'No status provided' : status}',
+              style: TextStyle(fontSize: 16),
+            ),
+            SizedBox(height: 30),
+            Text(
+              'Your Tree lies here: ',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 10),
+            Container(
+              height: 300, // Adjust this as needed
+              child: GoogleMap(
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(26.7926522, 87.2919745),
+                  zoom: 14.4746,
                 ),
-                SizedBox(height: 16.0),
-              ],
-            ),
-            Text(
-              'Points to remember:',
-              style: TextStyle(
-                fontSize: 21,
-                fontWeight: FontWeight.bold,
-                color: Colors.blueAccent,
               ),
-            ),
-            Text(
-              '${sentences[randomIndex]}',
-              style: TextStyle(fontSize: 16, color: Colors.black),
             ),
           ],
         ),

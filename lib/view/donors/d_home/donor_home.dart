@@ -37,7 +37,8 @@ class _DonorHomeState extends State<DonorHome> {
         child: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            title: Text("plan_a_tree".tr),
+            title: Text("plant_a_tree".tr,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
             actions: [
               IconButton(
                   onPressed: () {
@@ -79,45 +80,68 @@ class _DonorHomeState extends State<DonorHome> {
                             height: 100,
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
-                                colors: [
-                                  Colors.black,
-                                  const Color.fromARGB(255, 229, 160, 160)
-                                ],
+                                colors: [Colors.blueGrey, Colors.green],
                               ),
+                              borderRadius: BorderRadius.circular(
+                                  10), // This makes the box rounded
+                              boxShadow: [
+                                // This adds a shadow
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: Offset(
+                                      0, 3), // changes position of shadow
+                                ),
+                              ],
                             ),
-                            child: Text("total_plan_tree",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20)),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("total_plant_tree".tr,
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20)),
+                                Text("${donationListController.donationCount}",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20)),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
+                          padding: const EdgeInsets.only(left: 8.0, right: 6.0),
                           child: Container(
                             alignment: Alignment.center,
                             height: 100,
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
-                                colors: [
-                                  const Color.fromARGB(255, 23, 241, 135),
-                                  Colors.green,
-                                ],
+                                colors: [Colors.blueGrey, Colors.green],
                               ),
+                              borderRadius: BorderRadius.circular(
+                                  10), // This makes the box rounded
+                              boxShadow: [
+                                // This adds a shadow
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: Offset(
+                                      0, 3), // changes position of shadow
+                                ),
+                              ],
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text("total_donations".tr,
                                     style: TextStyle(
-                                        color:
-                                            const Color.fromARGB(255, 0, 0, 0),
-                                        fontSize: 20)),
-                                Text("50",
+                                        color: Colors.white, fontSize: 20)),
+                                Text("${donationListController.donationCount}",
                                     style: TextStyle(
-                                        color:
-                                            const Color.fromARGB(255, 0, 0, 0),
-                                        fontSize: 20)),
+                                        color: Colors.white, fontSize: 20)),
                               ],
                             ),
                           ),
@@ -127,7 +151,7 @@ class _DonorHomeState extends State<DonorHome> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(7.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -139,19 +163,28 @@ class _DonorHomeState extends State<DonorHome> {
                             height: 100,
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
-                                colors: [
-                                  Colors.black,
-                                  Color.fromARGB(255, 249, 88, 88)
-                                ],
+                                colors: [Colors.blueGrey, Colors.green],
                               ),
+                              borderRadius: BorderRadius.circular(
+                                  10), // This makes the box rounded
+                              boxShadow: [
+                                // This adds a shadow
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: Offset(
+                                      0, 3), // changes position of shadow
+                                ),
+                              ],
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text("total_donated_amount",
+                                Text("total_donated_amount".tr,
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 20)),
-                                Text("Rs. 100",
+                                Text("${donationListController.totalAmount}",
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 20)),
                               ],
@@ -170,7 +203,7 @@ class _DonorHomeState extends State<DonorHome> {
                     Container(
                       padding: EdgeInsets.only(left: 10),
                       alignment: Alignment.centerLeft,
-                      child: Text("Recent Donation",
+                      child: Text("recent_donations".tr,
                           style: TextStyle(color: Colors.black, fontSize: 25)),
                     ),
                     Expanded(
@@ -185,7 +218,7 @@ class _DonorHomeState extends State<DonorHome> {
                                     builder: (context) => DonateMoneyPage()),
                               );
                             },
-                            child: Text('+ Donate Money')),
+                            child: Text('+ ' + 'donate_money'.tr)),
                       ),
                     ),
                   ],
@@ -209,10 +242,17 @@ class _DonorHomeState extends State<DonorHome> {
                               return Padding(
                                 padding: const EdgeInsets.all(12.0),
                                 child: d_list(
-                                  title: donation.donationName ??
-                                      "", // replace with actual field names
-                                  description: donation.donationDescription ??
-                                      "", // replace with actual field names
+                                  title: donation.donationName ?? "",
+                                  description:
+                                      donation.donationDescription ?? "",
+                                  amount:
+                                      donation.donationAmount.toString() ?? "",
+                                  image: donation.treeDonationStatusImagePath ??
+                                      "",
+                                  comment:
+                                      donation.treeDonationStatusComments ?? "",
+                                  status:
+                                      donation.treeDonationStatusComments ?? "",
                                 ),
                               );
                             }).toList(),
