@@ -4,7 +4,7 @@ import 'package:project_app/resources/colors/app_color.dart';
 class RoundButton extends StatelessWidget {
   const RoundButton(
       {Key? key,
-      this.buttonColor = AppColor.blackColor,
+      this.buttonColor = const Color.fromARGB(255, 39, 151, 42),
       this.textColor = AppColor.whiteColor,
       required this.title,
       required this.onPress,

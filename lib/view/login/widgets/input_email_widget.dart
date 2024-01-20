@@ -23,7 +23,12 @@ class InputEmailWidget extends StatelessWidget {
             loginVM.passwordFocusNode.value);
       },
       decoration: InputDecoration(
-          hintText: "email_hint".tr, border: OutlineInputBorder()),
+        hintText: "email_hint".tr,
+        border: OutlineInputBorder(
+          borderRadius:
+              BorderRadius.circular(12), // This makes the border rounded
+        ),
+      ),
     );
   }
 }

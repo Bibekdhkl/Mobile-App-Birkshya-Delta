@@ -9,8 +9,76 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   final TextEditingController _controller = TextEditingController();
   List<Map<String, dynamic>> _qaPairs = [
-    {"question": "What is your name?", "answer": "My name is Arjun"},
-    {"question": "What is your age?", "answer": "32"},
+    {"question": "What is my name?", "answer": "Your name is Arjun"},
+    {"question": "What is your age?", "answer": "Your age is 32"},
+    {
+      "question": "What is my favorite color?",
+      "answer": "Your favorite color is blue"
+    },
+    {"question": "What is my job?", "answer": "You are a software developer"},
+    {"question": "Where do I live?", "answer": "You live in San Francisco"},
+    {
+      "question": "What is my favorite food?",
+      "answer": "Your favorite food is pizza"
+    },
+    {"question": "What is my pet's name?", "answer": "Your pet's name is Max"},
+    {
+      "question": "What is my favorite movie?",
+      "answer": "Your favorite movie is Inception"
+    },
+    {
+      "question": "What is my favorite book?",
+      "answer": "Your favorite book is 'To Kill a Mockingbird'"
+    },
+    {
+      "question": "What is my favorite sport?",
+      "answer": "Your favorite sport is basketball"
+    },
+    {
+      "question": "What is my favorite team?",
+      "answer": "Your favorite team is the Golden State Warriors"
+    },
+    {
+      "question": "What is my favorite song?",
+      "answer": "Your favorite song is 'Bohemian Rhapsody'"
+    },
+    {
+      "question": "What is my favorite band?",
+      "answer": "Your favorite band is Queen"
+    },
+    {
+      "question": "What is my favorite TV show?",
+      "answer": "Your favorite TV show is 'Breaking Bad'"
+    },
+    {
+      "question": "What is my favorite video game?",
+      "answer":
+          "Your favorite video game is 'The Legend of Zelda: Breath of the Wild'"
+    },
+    {
+      "question": "What is my favorite car?",
+      "answer": "Your favorite car is the Tesla Model S"
+    },
+    {
+      "question": "What is my favorite city?",
+      "answer": "Your favorite city is New York City"
+    },
+    {
+      "question": "What is my favorite country?",
+      "answer": "Your favorite country is Italy"
+    },
+    {
+      "question": "What is my favorite hobby?",
+      "answer": "Your favorite hobby is reading"
+    },
+    {
+      "question": "What is my favorite restaurant?",
+      "answer": "Your favorite restaurant is 'The French Laundry'"
+    },
+    {
+      "question": "What is my favorite drink?",
+      "answer": "Your favorite drink is coffee"
+    },
   ];
 
   List<Map<String, dynamic>> _messages = [];

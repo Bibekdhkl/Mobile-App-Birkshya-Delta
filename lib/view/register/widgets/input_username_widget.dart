@@ -23,7 +23,11 @@ class InputUsernameWidget extends StatelessWidget {
             registerVM.usernameFocusNode.value);
       },
       decoration: InputDecoration(
-          hintText: "username".tr, border: OutlineInputBorder()),
+          hintText: "username".tr,
+          border: OutlineInputBorder(
+            borderRadius:
+                BorderRadius.circular(10), // This makes the border rounded
+          )),
     );
   }
 }
